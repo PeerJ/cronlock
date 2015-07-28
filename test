@@ -47,4 +47,8 @@ CRONLOCK_DB=1 ./cronlock pwd
 CRONLOCK_DB=-1 ./cronlock pwd
 [ "${?}" -ne 201 ] && fatal "Invalid db should have failed"
 
+# Invalid auth code should fail with redis
+CRONLOCK_AUTH=INVALID_AUTH_CODE ./cronlock pwd
+[ "${?}" -ne 201 ] && fatal "Invalid redis auth code should have failed"
+
 exit 0
